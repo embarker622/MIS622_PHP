@@ -37,7 +37,7 @@ class Person {
     function __destruct() {
         
     }
-
+   
     //methods
 //    public function __set($name, $value) {
 //        $this->data[$name] = $value;
