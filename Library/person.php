@@ -37,7 +37,7 @@ class Person {
     function __destruct() {
         
     }
-   
+
     //methods
     public function getPersonId() {
         return $this->PersonId;
@@ -124,7 +124,13 @@ class Person {
     }
 
     public function setPostalCode($PostalCode) {
-        $this->PostalCode = $PostalCode;
+        //regexp for US or Canada postal code
+        $regexp = "(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)";
+        if (preg_match($regexp, $PostalCode)) {
+            $this->PostalCode = $PostalCode;
+        } else {
+            $this->PostalCode = null;
+        }
     }
 
     public function getPhone() {
@@ -132,7 +138,12 @@ class Person {
     }
 
     public function setPhone($Phone) {
-        $this->Phone = $Phone;
+        $regexp = "^\(\d{3}\) \d{3}-\d{4}$";
+        if (preg_match($regexp, $Phone)) {
+            $this->Phone = $Phone;
+        } else {
+            $this->Phone = null;
+        }
     }
 
     public function getEmail() {
@@ -140,7 +151,15 @@ class Person {
     }
 
     public function setEmail($Email) {
-        $this->Email = $Email;
+        $regexp = "/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/";
+
+        if (preg_match($regexp, $Email)) {
+            // "Email address is valid.";
+            $this->Email = $Email;
+        } else {
+            // "Email address is <u>not</u> valid.";
+            $this->Email = NULL;
+        }
     }
 
 }
