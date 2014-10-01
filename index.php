@@ -7,11 +7,19 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>HOS System</title>
     </head>
     <body>
         <?php
-        // put your code here
+        $person = new HOS.Person(1);
+        
+        $person->setAddress1('3147 Test Street');
+        
+        $person_address = $person -> getAddress1();
+        ?>
+        
+        <?php 
+        echo $person_address;
         ?>
     </body>
 </html>
