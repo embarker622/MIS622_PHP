@@ -2,11 +2,6 @@
 
 namespace HOS;
 
-/**
- * Person class for HOS
- *
- * @author ebarker1
- */
 class Person {
 
     //properties
@@ -126,7 +121,7 @@ class Person {
     public function setPostalCode($PostalCode) {
         //regexp for US or Canada postal code
         $regexp = "(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)";
-        if (preg_match($regexp, $PostalCode)) {
+        if (preg_match('/'.$regexp .'/', $PostalCode)) {
             $this->PostalCode = $PostalCode;
         } else {
             $this->PostalCode = null;
@@ -139,10 +134,11 @@ class Person {
 
     public function setPhone($Phone) {
         $regexp = "^\(\d{3}\) \d{3}-\d{4}$";
-        if (preg_match($regexp, $Phone)) {
+        
+        if (preg_match('/'.$regexp.'/', $Phone)) {
             $this->Phone = $Phone;
         } else {
-            $this->Phone = null;
+            $this->Phone = 'Please use (nnn) nnn-nnnn format';
         }
     }
 
@@ -151,15 +147,16 @@ class Person {
     }
 
     public function setEmail($Email) {
-        $regexp = "/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/";
-
-        if (preg_match($regexp, $Email)) {
+ 
+        if (filter_var($Email, FILTER_VALIDATE_EMAIL)) {
             // "Email address is valid.";
             $this->Email = $Email;
         } else {
             // "Email address is <u>not</u> valid.";
-            $this->Email = NULL;
+            $this->Email = 'Email does not match';
         }
     }
 
 }
+
+?>
