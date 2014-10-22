@@ -49,7 +49,7 @@ and open the template in the editor.
     </head>
     <body>
         <h3>Address</h3>
-        <form name="form1" mentod="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <form name="form1" mentod="post" action="addressreceived.php">
             <table>
                 <tr>
                     <th>Street line 1:</th>
