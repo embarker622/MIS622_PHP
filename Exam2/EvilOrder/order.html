@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Order</title>
+    <meta charset="UTF-8">
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      table {
+        margin-left: 40px;
+      }
+      td {
+        text-align: center;
+      }
+    </style>
+  
+    <script>
+      $(document).ready(function(){
+            $("#imgCamera").mouseover(function(){
+               $("#imgCamera").attr("src", "beetle.png");
+              });
+              
+            $( "#imgCamera" ).mouseout(function() {
+                $("#imgCamera").attr("src", "camera.png");
+            });            
+                     
+            $( "img" ).mouseout(function() {
+                $("#pOrderTotal" ).replaceWith( "<p id='pOrderTotal'>Order Total: $0</p>" );
+            });
+            
+            $("img").click(function(){
+                $( "#pOrderTotal" ).replaceWith( "<p id='pOrderTotal'>Order Total: $50,000</p>" );
+            });
+            
+            $("button").click(function(){
+                alert("Virus Alert! Your bank account has bein drained!");
+            });
+      });
+
+    </script>
+  </head>
+  <body>
+      <div id="header">
+        <h1>Order</h1>
+        <p>
+          Please click on the picture of the item you would like to order.
+          Your order total will appear. Click the order button to place
+          your order.
+        </p>
+    </div>
+    <table id="tblMain">
+      <tr>
+        <th>Pocket Camera</th>
+        <th>iGramophone</th>
+      </tr>
+      <tr>
+        <td>
+          <img src="camera.png" alt="Pocket camera" id="imgCamera">
+        </td>
+        <td>
+          <img src="gramophone1.png" alt="iGramophone">
+        </td>
+      </tr>
+      <tr>
+        <td>Price: $190</td>
+        <td>Price: $249</td>
+      </tr>
+    </table>
+      <div id="footer">
+          <p id="pOrderTotal">
+              Order Total: $0
+          </p>
+            <p>
+              <button type="button">Order</button>
+            </p>
+    </div>
+  </body>
+</html>
