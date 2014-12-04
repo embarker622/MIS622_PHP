@@ -17,12 +17,16 @@ and open the template in the editor.
         $sumProduction = 0;
         $sumSickDays = 0;
         $sumExecution = 0;
+        $dataSorted2[] = null;
+        $line[] = null;
 
         if (($handle = fopen("elves.csv", "r")) !== FALSE) {
-            $dataSorted = fgetcsv($handle, 1000, ",");
+            //read into array
+                //for the life of me i cannot get this to work. grrrr!
             //table
             echo "<table><tbody><tr><th>Name</th><th>Department</th><th>Production</th><th>Sick days</th></tr>";
-            while (($data = $dataSorted ) !== FALSE) {
+            // while (($data = fgetcsv($handle, 1000, ",") ) !== FALSE) {
+            while (($data = $line ) !== FALSE) {
                 $num = count($data);
 
                 echo "<tr>";
@@ -46,11 +50,10 @@ and open the template in the editor.
             echo "</tr>";
         }
         echo "</tbody></table>";
-        
+
         //sort data
         fclose($handle);
         echo "<p>Number of execution candidates: " . $sumExecution . "</p>";
-
         ?>
     </body>
 </html>
@@ -65,13 +68,12 @@ and open the template in the editor.
  * @param mixed $field key that you want to sort on
  * @param enum $order ASC or DESC
  */
-
 function array_sort_by_field(&$array, $field = 0, $order = "ASC") {
-  $oper = ($order == "ASC") ? ">" : "<";
-  if (!is_array($array)) {
-    return;
-  }
-  usort($array, create_function('$a,$b', "return (\$a['$field'] $oper \$b['$field']);"));
-  reset($array);
+    $oper = ($order == "ASC") ? ">" : "<";
+    if (!is_array($array)) {
+        return;
+    }
+    usort($array, create_function('$a,$b', "return (\$a['$field'] $oper \$b['$field']);"));
+    reset($array);
 }
 ?>
