@@ -17,16 +17,15 @@ and open the template in the editor.
         $sumProduction = 0;
         $sumSickDays = 0;
         $sumExecution = 0;
-        $dataSorted2[] = null;
-        $line[] = null;
+ 
 
         if (($handle = fopen("elves.csv", "r")) !== FALSE) {
             //read into array
                 //for the life of me i cannot get this to work. grrrr!
             //table
             echo "<table><tbody><tr><th>Name</th><th>Department</th><th>Production</th><th>Sick days</th></tr>";
-            // while (($data = fgetcsv($handle, 1000, ",") ) !== FALSE) {
-            while (($data = $line ) !== FALSE) {
+            while (($data = fgetcsv($handle, 1000, ",") ) !== FALSE) {
+
                 $num = count($data);
 
                 echo "<tr>";
